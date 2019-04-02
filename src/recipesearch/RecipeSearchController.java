@@ -2,6 +2,8 @@
 package recipesearch;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,18 +57,23 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private SplitPane searchPane;
 
+  private Map<String, RecipeListItem> recipeListItemMap = new HashMap<String, RecipeListItem>();
+
   private RecipeDatabase db = RecipeDatabase.getSharedInstance();
   private RecipeBackendController backendController;
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     backendController = new RecipeBackendController();
+
+    initHashMap();
     updateRecipeList();
     setupIngredientComboBox();
     setupCuisineComboBox();
     setUpDifficultyRadioButtons();
     setupPriceSpinner();
     setupTimeSlider();
+
   }
 
   @FXML
@@ -75,11 +82,11 @@ public class RecipeSearchController implements Initializable {
   }
 
   public void openRecipeView(Recipe recipe) {
-    populaterecipieDetailView(recipe);
+    populateRecipeDetailView(recipe);
     detailedViewAnchorPane.toFront();
   }
 
-  private void populaterecipieDetailView(Recipe recipe) {
+  private void populateRecipeDetailView(Recipe recipe) {
     detailedLabel.setText(recipe.getName());
     detailedImageView.setImage(recipe.getFXImage());
   }
@@ -161,10 +168,17 @@ public class RecipeSearchController implements Initializable {
     updateMinuteLabel();
   }
 
+  private void initHashMap(){
+    for (Recipe recipe : backendController.getRecipes()) {
+      RecipeListItem recipeListItem = new RecipeListItem(recipe, this);
+      recipeListItemMap.put(recipe.getName(), recipeListItem);
+    }
+  }
+
   private void updateRecipeList() {
     searchFlowPane.getChildren().clear();
     for (Recipe recipe : backendController.getRecipes()) {
-      RecipeListItem item = new RecipeListItem(recipe, this);
+      RecipeListItem item = recipeListItemMap.get(recipe.getName());
       searchFlowPane.getChildren().add(item);
     }
   }
