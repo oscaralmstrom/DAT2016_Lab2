@@ -91,7 +91,6 @@ public class RecipeSearchController implements Initializable {
     cuisineComboBox.getSelectionModel().select("Visa alla");
     cuisineComboBox.getSelectionModel().selectedItemProperty()
         .addListener(((observable, oldValue, newValue) -> {
-              System.out.println("Tweaked cuisine!");
               backendController.setCuisine(newValue);
               updateRecipeList();
             })
@@ -104,7 +103,6 @@ public class RecipeSearchController implements Initializable {
     ingredientComboBox.getSelectionModel().select("Visa alla");
     ingredientComboBox.getSelectionModel().selectedItemProperty()
         .addListener(((observable, oldValue, newValue) -> {
-              System.out.println("Tweaked main ingredient!");
               backendController.setMainIngredient(newValue);
               updateRecipeList();
             })
@@ -124,7 +122,6 @@ public class RecipeSearchController implements Initializable {
     difficultyToggleGroup.selectedToggleProperty()
         .addListener(((observable, oldValue, newValue) -> {
               if (difficultyToggleGroup.getSelectedToggle() != null) {
-                System.out.println("Tweaked difficulty!");
                 RadioButton selected = (RadioButton) difficultyToggleGroup.getSelectedToggle();
                 backendController.setDifficulty(selected.getText());
                 updateRecipeList();
@@ -138,13 +135,11 @@ public class RecipeSearchController implements Initializable {
         IntegerSpinnerValueFactory(0, 100, 100, 10);
     priceSpinner.setValueFactory(factory);
     priceSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
-      System.out.println("Tweaked max price!" + System.currentTimeMillis());
       backendController.setMaxPrice(newValue);
       updateRecipeList();
     }));
 
     priceSpinner.focusedProperty().addListener(((observable, oldValue, newValue) -> {
-      System.out.println("(Focused) Tweaked max price! " + System.currentTimeMillis());
       if (newValue) {
       } else {
         int value = Integer.valueOf(priceSpinner.getEditor().getText());
@@ -157,7 +152,6 @@ public class RecipeSearchController implements Initializable {
   private void setupTimeSlider() {
     timeSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
       if (newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
-        System.out.println("Tweaked max time! " + System.currentTimeMillis());
         int value = (int) timeSlider.getValue();
         backendController.setMaxTime(value);
         updateRecipeList();
