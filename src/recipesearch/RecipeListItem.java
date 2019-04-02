@@ -31,6 +31,6 @@ public class RecipeListItem extends AnchorPane {
     this.recipe = recipe;
     parent = recipeSearchController;
     recipeImage = new ImageView(recipe.getFXImage());
-    recipeLabel = new Label(recipe.getName()); //FIXME perhaps?
+    recipeLabel = new Label(recipe.getName());
   }
 }
