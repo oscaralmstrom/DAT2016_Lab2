@@ -16,8 +16,6 @@ import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 
 public class RecipeSearchController implements Initializable {
 
-  private RecipeDatabase db = RecipeDatabase.getSharedInstance();
-
   @FXML
   private ComboBox<String> ingredientComboBox;
   @FXML
@@ -39,6 +37,7 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private FlowPane searchFlowPane;
 
+  private RecipeDatabase db = RecipeDatabase.getSharedInstance();
   private RecipeBackendController backendController;
 
   @Override
