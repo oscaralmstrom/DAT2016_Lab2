@@ -5,14 +5,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 
@@ -40,6 +45,16 @@ public class RecipeSearchController implements Initializable {
   private FlowPane searchFlowPane;
   @FXML
   private Label minuteLabel;
+  @FXML
+  private ImageView detailedImageView;
+  @FXML
+  private Label detailedLabel;
+  @FXML
+  private Button detailedViewCloseButton;
+  @FXML
+  private AnchorPane detailedViewAnchorPane;
+  @FXML
+  private SplitPane searchPane;
 
   private RecipeDatabase db = RecipeDatabase.getSharedInstance();
   private RecipeBackendController backendController;
@@ -53,6 +68,21 @@ public class RecipeSearchController implements Initializable {
     setUpDifficultyRadioButtons();
     setupPriceSpinner();
     setupTimeSlider();
+  }
+
+  @FXML
+  public void closeRecipeView(){
+    searchPane.toFront();
+  }
+
+  public void openRecipeView(Recipe recipe){
+    populaterecipieDetailView(recipe);
+    detailedViewAnchorPane.toFront();
+  }
+
+  private void populaterecipieDetailView(Recipe recipe){
+    detailedLabel.setText(recipe.getName());
+    detailedImageView.setImage(recipe.getFXImage());
   }
 
   private void setupCuisineComboBox() {
