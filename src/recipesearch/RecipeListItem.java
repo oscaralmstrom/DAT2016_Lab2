@@ -37,7 +37,7 @@ public class RecipeListItem extends AnchorPane {
   }
 
   @FXML
-  protected void onClick(Event event){
+  protected void onClick(Event event) {
     parent.openRecipeView(recipe);
   }
 }

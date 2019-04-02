@@ -17,7 +17,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 
@@ -71,16 +70,16 @@ public class RecipeSearchController implements Initializable {
   }
 
   @FXML
-  public void closeRecipeView(){
+  public void closeRecipeView() {
     searchPane.toFront();
   }
 
-  public void openRecipeView(Recipe recipe){
+  public void openRecipeView(Recipe recipe) {
     populaterecipieDetailView(recipe);
     detailedViewAnchorPane.toFront();
   }
 
-  private void populaterecipieDetailView(Recipe recipe){
+  private void populaterecipieDetailView(Recipe recipe) {
     detailedLabel.setText(recipe.getName());
     detailedImageView.setImage(recipe.getFXImage());
   }
