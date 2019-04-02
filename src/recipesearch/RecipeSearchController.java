@@ -44,6 +44,35 @@ public class RecipeSearchController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     backendController = new RecipeBackendController();
     updateRecipeList();
+    setupIngredientComboBox();
+    setupCuisineComboBox();
+  }
+
+  private void setupCuisineComboBox() {
+    cuisineComboBox.getItems()
+        .addAll("Visa alla", "Sverige", "Grekland", "Indien", "Asien", "Afrika",
+            "Frankrike");
+    cuisineComboBox.getSelectionModel().select("Visa alla");
+    cuisineComboBox.getSelectionModel().selectedItemProperty()
+        .addListener(((observable, oldValue, newValue) -> {
+              System.out.println("Tweaked cuisine!");
+              backendController.setCuisine(newValue);
+              updateRecipeList();
+            })
+        );
+  }
+
+  private void setupIngredientComboBox() {
+    ingredientComboBox.getItems()
+        .addAll("Visa alla", "Kött", "Fisk", "Kyckling", "Vegetarisk");
+    ingredientComboBox.getSelectionModel().select("Visa alla");
+    ingredientComboBox.getSelectionModel().selectedItemProperty()
+        .addListener(((observable, oldValue, newValue) -> {
+              System.out.println("Tweaked main ingredient!");
+              backendController.setMainIngredient(newValue);
+              updateRecipeList();
+            })
+        );
   }
 
   private void updateRecipeList() {
