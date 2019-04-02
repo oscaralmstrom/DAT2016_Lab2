@@ -7,12 +7,12 @@ import se.chalmers.ait.dat215.lab2.SearchFilter;
 
 public class RecipeBackendController {
 
-  RecipeDatabase db;
-  String cuisine;
-  String mainIngredient;
-  String difficulty;
-  int maxPrice;
-  int maxTime;
+  private RecipeDatabase db;
+  private String cuisine;
+  private String mainIngredient;
+  private String difficulty;
+  private int maxPrice;
+  private int maxTime;
 
   public RecipeBackendController() {
     db = RecipeDatabase.getSharedInstance();
