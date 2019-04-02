@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -21,6 +22,28 @@
    <children>
       <StackPane prefHeight="500.0" prefWidth="800.0">
          <children>
+            <AnchorPane id="recipeDetailPane" fx:id="detailedViewAnchorPane" prefHeight="488.0" prefWidth="697.0" style="-fx-background-color: rgba(71,71,71,0.6);">
+               <children>
+                  <AnchorPane layoutX="34.0" layoutY="32.0" prefHeight="436.0" prefWidth="731.0" style="-fx-background-color: rgb(255, 255, 255);">
+                     <children>
+                        <ImageView fx:id="detailedImageView" fitHeight="191.0" fitWidth="250.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="detailedLabel" layoutX="273.0" layoutY="14.0" text="Label">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="detailedViewCloseButton" layoutX="686.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeRecipeView" style="-fx-background-color: rgba(0,0,0,0);">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/icon_close.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
             <SplitPane fx:id="searchPane" dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: #00FF00;">
               <items>
                 <AnchorPane id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;">
@@ -66,12 +89,6 @@
                      </children></AnchorPane>
               </items>
             </SplitPane>
-            <AnchorPane id="recipeDetailPane" fx:id="detailedViewAnchorPane" prefHeight="488.0" prefWidth="697.0" style="-fx-background-color: rgba(71,71,71,0.6);">
-               <children>
-                  <ImageView fx:id="detailedImageView" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="detailedLabel" layoutX="299.0" layoutY="142.0" text="Label" />
-                  <Button fx:id="detailedViewCloseButton" layoutX="711.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeRecipeView" text="Stäng" />
-               </children></AnchorPane>
          </children>
       </StackPane>
    </children>
