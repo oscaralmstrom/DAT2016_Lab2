@@ -11,6 +11,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.FlowPane;
+import se.chalmers.ait.dat215.lab2.Recipe;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 
 public class RecipeSearchController implements Initializable {
@@ -38,8 +39,19 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private FlowPane searchFlowPane;
 
+  private RecipeBackendController backendController;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+    backendController = new RecipeBackendController();
+    updateRecipeList();
+  }
 
+  private void updateRecipeList() {
+    searchFlowPane.getChildren().clear();
+    for (Recipe recipe : backendController.getRecipes()) {
+      RecipeListItem item = new RecipeListItem(recipe, this);
+      searchFlowPane.getChildren().add(item);
+    }
   }
 }

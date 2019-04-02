@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
 
@@ -13,7 +13,7 @@ public class RecipeListItem extends AnchorPane {
   private RecipeSearchController parent;
   private Recipe recipe;
   @FXML
-  private Image recipeImage;
+  private ImageView recipeImage;
   @FXML
   private Label recipeLabel;
 
@@ -30,7 +30,7 @@ public class RecipeListItem extends AnchorPane {
 
     this.recipe = recipe;
     parent = recipeSearchController;
-    recipeImage = recipe.getFXImage();
+    recipeImage = new ImageView(recipe.getFXImage());
     recipeLabel = new Label(recipe.getName()); //FIXME perhaps?
   }
 }

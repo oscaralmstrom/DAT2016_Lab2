@@ -26,7 +26,7 @@
                      <children>
                         <VBox layoutX="116.0" layoutY="139.0" prefHeight="305.0" prefWidth="153.0" spacing="20.0">
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="170.0" />
+                              <ComboBox fx:id="ingredientComboBox" prefHeight="25.0" prefWidth="170.0" />
                               <ComboBox fx:id="cuisineComboBox" prefHeight="25.0" prefWidth="187.0" />
                               <RadioButton fx:id="allDifficultiesRadioButton" alignment="CENTER_LEFT" mnemonicParsing="false" selected="true" text="Alla">
                                  <toggleGroup>
@@ -55,7 +55,7 @@
                            </padding>
                         </Label>
                      </children></AnchorPane>
-                <AnchorPane id="listPane" fx:id="ingredientComboBox" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane id="listPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <ScrollPane prefHeight="498.0" prefWidth="516.0">
                            <content>
