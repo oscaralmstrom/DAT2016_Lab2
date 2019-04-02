@@ -1,4 +1,3 @@
-
 package recipesearch;
 
 import java.util.ResourceBundle;
@@ -12,7 +11,6 @@ public class RecipeSearch extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-
     ResourceBundle bundle = java.util.ResourceBundle
         .getBundle("recipesearch/resources/RecipeSearch");
 

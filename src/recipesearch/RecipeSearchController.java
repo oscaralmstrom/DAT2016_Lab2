@@ -1,4 +1,3 @@
-
 package recipesearch;
 
 import java.net.URL;
@@ -49,7 +48,11 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private ImageView detailedImageView;
   @FXML
-  private Label detailedLabel;
+  private Label detailedNameLabel;
+  @FXML
+  private Label detailedDescriptionLabel;
+  @FXML
+  private Label detailedInstructionLabel;
   @FXML
   private Button detailedViewCloseButton;
   @FXML
@@ -87,8 +90,10 @@ public class RecipeSearchController implements Initializable {
   }
 
   private void populateRecipeDetailView(Recipe recipe) {
-    detailedLabel.setText(recipe.getName());
+    detailedNameLabel.setText(recipe.getName());
     detailedImageView.setImage(recipe.getFXImage());
+    detailedInstructionLabel.setText(recipe.getInstruction());
+    detailedDescriptionLabel.setText(recipe.getDescription());
   }
 
   private void setupCuisineComboBox() {
@@ -168,7 +173,7 @@ public class RecipeSearchController implements Initializable {
     updateMinuteLabel();
   }
 
-  private void initHashMap(){
+  private void initHashMap() {
     for (Recipe recipe : backendController.getRecipes()) {
       RecipeListItem recipeListItem = new RecipeListItem(recipe, this);
       recipeListItemMap.put(recipe.getName(), recipeListItem);
@@ -184,7 +189,6 @@ public class RecipeSearchController implements Initializable {
   }
 
   private void updateMinuteLabel() {
-    //int val = (int) Math.round(timeSlider.getValue());
     int val = (int) timeSlider.getValue();
     minuteLabel.setText(val + " minuter");
   }
