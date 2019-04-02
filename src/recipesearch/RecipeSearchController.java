@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.FlowPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
@@ -31,11 +33,13 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private RadioButton hardRadioButton;
   @FXML
-  private Spinner<String> priceSpinner;
+  private Spinner<Integer> priceSpinner;
   @FXML
   private Slider timeSlider;
   @FXML
   private FlowPane searchFlowPane;
+  @FXML
+  private Label minuteLabel;
 
   private RecipeDatabase db = RecipeDatabase.getSharedInstance();
   private RecipeBackendController backendController;
@@ -46,6 +50,9 @@ public class RecipeSearchController implements Initializable {
     updateRecipeList();
     setupIngredientComboBox();
     setupCuisineComboBox();
+    setUpDifficultyRadioButtons();
+    setupPriceSpinner();
+    setupTimeSlider();
   }
 
   private void setupCuisineComboBox() {
@@ -75,11 +82,73 @@ public class RecipeSearchController implements Initializable {
         );
   }
 
+  private void setUpDifficultyRadioButtons() {
+    difficultyToggleGroup = new ToggleGroup();
+
+    allDifficultiesRadioButton.setToggleGroup(difficultyToggleGroup);
+    easyRadioButton.setToggleGroup(difficultyToggleGroup);
+    mediumRadioButton.setToggleGroup(difficultyToggleGroup);
+    hardRadioButton.setToggleGroup(difficultyToggleGroup);
+
+    allDifficultiesRadioButton.setSelected(true);
+
+    difficultyToggleGroup.selectedToggleProperty()
+        .addListener(((observable, oldValue, newValue) -> {
+              if (difficultyToggleGroup.getSelectedToggle() != null) {
+                System.out.println("Tweaked difficulty!");
+                RadioButton selected = (RadioButton) difficultyToggleGroup.getSelectedToggle();
+                backendController.setDifficulty(selected.getText());
+                updateRecipeList();
+              }
+            })
+        );
+  }
+
+  private void setupPriceSpinner() {
+    SpinnerValueFactory<Integer> factory = new SpinnerValueFactory.
+        IntegerSpinnerValueFactory(0, 100, 100, 10);
+    priceSpinner.setValueFactory(factory);
+    priceSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
+      System.out.println("Tweaked max price!" + System.currentTimeMillis());
+      backendController.setMaxPrice(newValue);
+      updateRecipeList();
+    }));
+
+    priceSpinner.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+      System.out.println("(Focused) Tweaked max price! " + System.currentTimeMillis());
+      if (newValue) {
+      } else {
+        int value = Integer.valueOf(priceSpinner.getEditor().getText());
+        backendController.setMaxPrice(value);
+        updateRecipeList();
+      }
+    }));
+  }
+
+  private void setupTimeSlider() {
+    timeSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
+      if (newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
+        System.out.println("Tweaked max time! " + System.currentTimeMillis());
+        int value = (int) timeSlider.getValue();
+        backendController.setMaxTime(value);
+        updateRecipeList();
+        updateMinuteLabel();
+      }
+    }));
+    updateMinuteLabel();
+  }
+
   private void updateRecipeList() {
     searchFlowPane.getChildren().clear();
     for (Recipe recipe : backendController.getRecipes()) {
       RecipeListItem item = new RecipeListItem(recipe, this);
       searchFlowPane.getChildren().add(item);
     }
+  }
+
+  private void updateMinuteLabel() {
+    //int val = (int) Math.round(timeSlider.getValue());
+    int val = (int) timeSlider.getValue();
+    minuteLabel.setText(val + " minuter");
   }
 }
