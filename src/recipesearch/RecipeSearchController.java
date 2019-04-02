@@ -10,6 +10,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.FlowPane;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 
 public class RecipeSearchController implements Initializable {
@@ -34,6 +35,8 @@ public class RecipeSearchController implements Initializable {
   private Spinner<String> priceSpinner;
   @FXML
   private Slider timeSlider;
+  @FXML
+  private FlowPane searchFlowPane;
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
