@@ -46,7 +46,7 @@
                         <Label alignment="CENTER_RIGHT" layoutX="13.0" layoutY="139.0" prefHeight="25.0" prefWidth="103.0" text="Huvudingrediens: " />
                         <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="184.0" prefHeight="25.0" prefWidth="91.0" text="Kök: " />
                         <Label fx:id="minuteLabel" alignment="CENTER_RIGHT" layoutX="171.0" layoutY="444.0" prefHeight="25.0" prefWidth="91.0" text="N/A minuter" />
-                        <Label layoutY="53.0" prefHeight="66.0" prefWidth="276.0" text="Hitt ett recept som passar genom att ändra inställningarna nedanför" textAlignment="CENTER" wrapText="true">
+                        <Label layoutY="53.0" prefHeight="66.0" prefWidth="276.0" text="Hitta ett recept som passar genom att ändra inställningarna nedanför" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="14.0" />
                            </font>
