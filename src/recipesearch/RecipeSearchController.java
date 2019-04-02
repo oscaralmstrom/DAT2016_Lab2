@@ -17,7 +17,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 
@@ -71,16 +70,16 @@ public class RecipeSearchController implements Initializable {
   }
 
   @FXML
-  public void closeRecipeView(){
+  public void closeRecipeView() {
     searchPane.toFront();
   }
 
-  public void openRecipeView(Recipe recipe){
+  public void openRecipeView(Recipe recipe) {
     populaterecipieDetailView(recipe);
     detailedViewAnchorPane.toFront();
   }
 
-  private void populaterecipieDetailView(Recipe recipe){
+  private void populaterecipieDetailView(Recipe recipe) {
     detailedLabel.setText(recipe.getName());
     detailedImageView.setImage(recipe.getFXImage());
   }
@@ -92,7 +91,6 @@ public class RecipeSearchController implements Initializable {
     cuisineComboBox.getSelectionModel().select("Visa alla");
     cuisineComboBox.getSelectionModel().selectedItemProperty()
         .addListener(((observable, oldValue, newValue) -> {
-              System.out.println("Tweaked cuisine!");
               backendController.setCuisine(newValue);
               updateRecipeList();
             })
@@ -105,7 +103,6 @@ public class RecipeSearchController implements Initializable {
     ingredientComboBox.getSelectionModel().select("Visa alla");
     ingredientComboBox.getSelectionModel().selectedItemProperty()
         .addListener(((observable, oldValue, newValue) -> {
-              System.out.println("Tweaked main ingredient!");
               backendController.setMainIngredient(newValue);
               updateRecipeList();
             })
@@ -125,7 +122,6 @@ public class RecipeSearchController implements Initializable {
     difficultyToggleGroup.selectedToggleProperty()
         .addListener(((observable, oldValue, newValue) -> {
               if (difficultyToggleGroup.getSelectedToggle() != null) {
-                System.out.println("Tweaked difficulty!");
                 RadioButton selected = (RadioButton) difficultyToggleGroup.getSelectedToggle();
                 backendController.setDifficulty(selected.getText());
                 updateRecipeList();
@@ -139,13 +135,11 @@ public class RecipeSearchController implements Initializable {
         IntegerSpinnerValueFactory(0, 100, 100, 10);
     priceSpinner.setValueFactory(factory);
     priceSpinner.valueProperty().addListener(((observable, oldValue, newValue) -> {
-      System.out.println("Tweaked max price!" + System.currentTimeMillis());
       backendController.setMaxPrice(newValue);
       updateRecipeList();
     }));
 
     priceSpinner.focusedProperty().addListener(((observable, oldValue, newValue) -> {
-      System.out.println("(Focused) Tweaked max price! " + System.currentTimeMillis());
       if (newValue) {
       } else {
         int value = Integer.valueOf(priceSpinner.getEditor().getText());
@@ -158,7 +152,6 @@ public class RecipeSearchController implements Initializable {
   private void setupTimeSlider() {
     timeSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
       if (newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
-        System.out.println("Tweaked max time! " + System.currentTimeMillis());
         int value = (int) timeSlider.getValue();
         backendController.setMaxTime(value);
         updateRecipeList();

@@ -23,7 +23,6 @@ public class RecipeSearch extends Application {
     stage.setTitle(bundle.getString("application.name"));
     stage.setScene(scene);
     stage.show();
-
   }
 
   /**

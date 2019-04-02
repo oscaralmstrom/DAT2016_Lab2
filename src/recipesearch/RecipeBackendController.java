@@ -7,7 +7,7 @@ import se.chalmers.ait.dat215.lab2.SearchFilter;
 
 public class RecipeBackendController {
 
-  private RecipeDatabase db;
+  private final RecipeDatabase db;
   private String cuisine;
   private String mainIngredient;
   private String difficulty;
@@ -41,5 +41,4 @@ public class RecipeBackendController {
   public void setMaxTime(int maxTime) {
     this.maxTime = maxTime;
   }
-
 }
