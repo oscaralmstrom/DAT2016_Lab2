@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipesearch.RecipeSearchController">
    <children>
       <StackPane prefHeight="500.0" prefWidth="800.0">
          <children>
             <AnchorPane id="recipeDetailPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF0000;" />
-            <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: #00FF00;">
+            <SplitPane dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: #00FF00;">
               <items>
-                <AnchorPane id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #0000FF;" />
+                <AnchorPane id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <VBox layoutX="116.0" layoutY="139.0" prefHeight="305.0" prefWidth="153.0" spacing="20.0">
+                           <children>
+                              <ComboBox prefHeight="25.0" prefWidth="170.0" />
+                              <ComboBox prefHeight="25.0" prefWidth="187.0" />
+                              <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" selected="true" text="Alla">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="difficultyGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" text="Lätt" toggleGroup="$difficultyGroup" />
+                              <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" text="Mellan" toggleGroup="$difficultyGroup" />
+                              <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" text="Svår" toggleGroup="$difficultyGroup" />
+                              <Spinner prefHeight="25.0" prefWidth="112.0" />
+                              <Slider />
+                           </children>
+                        </VBox>
+                        <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="224.0" prefHeight="25.0" prefWidth="91.0" text="Svårighetsgrad: " />
+                        <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="376.0" prefHeight="25.0" prefWidth="91.0" text="Maxpris: " />
+                        <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="417.0" prefHeight="25.0" prefWidth="91.0" text="Maxtid: " />
+                        <Label alignment="CENTER_RIGHT" layoutX="13.0" layoutY="139.0" prefHeight="25.0" prefWidth="103.0" text="Huvudingrediens: " />
+                        <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="184.0" prefHeight="25.0" prefWidth="91.0" text="Kök: " />
+                        <Label alignment="CENTER_RIGHT" layoutX="171.0" layoutY="444.0" prefHeight="25.0" prefWidth="91.0" text="N/A minuter" />
+                        <Label layoutY="53.0" prefHeight="66.0" prefWidth="276.0" text="Hitt ett recept som passar genom att ändra inställningarna nedanför" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                     </children></AnchorPane>
                 <AnchorPane id="listPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
               </items>
             </SplitPane>
