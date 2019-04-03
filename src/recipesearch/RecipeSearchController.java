@@ -60,15 +60,14 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private SplitPane searchPane;
 
-  private Map<String, RecipeListItem> recipeListItemMap = new HashMap<String, RecipeListItem>();
-
-  private RecipeDatabase db = RecipeDatabase.getSharedInstance();
+  private Map<String, RecipeListItem> recipeListItemMap;
   private RecipeBackendController backendController;
+  private RecipeDatabase db = RecipeDatabase.getSharedInstance();
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     backendController = new RecipeBackendController();
-
+    recipeListItemMap = initHashMap();
     initHashMap();
     updateRecipeList();
     setupIngredientComboBox();
@@ -76,7 +75,6 @@ public class RecipeSearchController implements Initializable {
     setUpDifficultyRadioButtons();
     setupPriceSpinner();
     setupTimeSlider();
-
   }
 
   @FXML
@@ -173,11 +171,13 @@ public class RecipeSearchController implements Initializable {
     updateMinuteLabel();
   }
 
-  private void initHashMap() {
+  private Map<String, RecipeListItem> initHashMap() {
+    Map<String, RecipeListItem> map = new HashMap<>(backendController.getRecipes().size());
     for (Recipe recipe : backendController.getRecipes()) {
       RecipeListItem recipeListItem = new RecipeListItem(recipe, this);
-      recipeListItemMap.put(recipe.getName(), recipeListItem);
+      map.put(recipe.getName(), recipeListItem);
     }
+    return map;
   }
 
   private void updateRecipeList() {
