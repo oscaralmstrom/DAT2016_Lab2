@@ -28,7 +28,7 @@ public class RecipeSearchController implements Initializable {
   @FXML
   private ComboBox<String> cuisineComboBox;
   @FXML
-  private ToggleGroup difficultyToggleGroup;
+  private ToggleGroup difficultyToggleGroup; //FIXME is this used by SceneBuilder?
   @FXML
   private RadioButton allDifficultiesRadioButton;
   @FXML
@@ -68,7 +68,6 @@ public class RecipeSearchController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     backendController = new RecipeBackendController();
     recipeListItemMap = initHashMap();
-    initHashMap();
     updateRecipeList();
     setupIngredientComboBox();
     setupCuisineComboBox();
@@ -82,7 +81,7 @@ public class RecipeSearchController implements Initializable {
     searchPane.toFront();
   }
 
-  public void openRecipeView(Recipe recipe) {
+  void openRecipeView(Recipe recipe) {
     populateRecipeDetailView(recipe);
     detailedViewAnchorPane.toFront();
   }
